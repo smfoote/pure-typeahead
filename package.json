@@ -14,7 +14,7 @@
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
-    "test": "nwb test-react",
+    "test": "jest",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
@@ -23,9 +23,16 @@
     "react": "15.x"
   },
   "devDependencies": {
+    "enzyme": "^2.9.1",
+    "jest": "^20.0.4",
+    "jest-enzyme": "^3.8.0",
     "nwb": "0.18.x",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js"
   },
   "author": "",
   "homepage": "",
