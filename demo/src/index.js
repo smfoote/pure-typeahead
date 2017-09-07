@@ -6,6 +6,8 @@ import TypeaheadInput from '../../src/TypeaheadInput';
 import TypeaheadResultsList from '../../src/TypeaheadResultsList';
 import TypeaheadResult from '../../src/TypeaheadResult';
 
+import Styles from '../../src/styles';
+
 class Demo extends Component {
   render() {
     return <div>
@@ -22,6 +24,7 @@ class Demo extends Component {
           <TypeaheadResult onSelect={()=>{}}>Tabby</TypeaheadResult>
         </TypeaheadResultsList>
       </Typeahead>
+      <Styles/>
     </div>
   }
 }
