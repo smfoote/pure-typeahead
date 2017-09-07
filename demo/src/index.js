@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 
-import Example from '../../src'
+import Typeahead from '../../src/Typeahead';
+import TypeaheadInput from '../../src/TypeaheadInput';
+import TypeaheadResultsList from '../../src/TypeaheadResultsList';
+import TypeaheadResult from '../../src/TypeaheadResult';
 
 class Demo extends Component {
   render() {
@@ -11,7 +14,12 @@ class Demo extends Component {
       <Typeahead>
         <TypeaheadInput onChange={()=>{}}/>
         <TypeaheadResultsList>
-          <TypeaheadResult onSelect={()=>{}}></TypeaheadResult>
+          <h3>Dogs</h3>
+          <TypeaheadResult onSelect={()=>{}}>Puppy</TypeaheadResult>
+          <TypeaheadResult onSelect={()=>{}}>Beagle</TypeaheadResult>
+          <h3>Cats</h3>
+          <TypeaheadResult onSelect={()=>{}}>Alley</TypeaheadResult>
+          <TypeaheadResult onSelect={()=>{}}>Tabby</TypeaheadResult>
         </TypeaheadResultsList>
       </Typeahead>
     </div>
