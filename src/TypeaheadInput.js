@@ -4,6 +4,14 @@ export default class TypeaheadInput extends Component {
   onChange(evt) {
     this.props.onChange(evt.target.value);
   }
+
+  onKeyDown(evt) {
+    const { key } = evt;
+    if (key === 'ArrowDown' || key === 'ArrowUp') {
+      this.props.arrowKeyPressed(key);
+    }
+  }
+
   render() {
     const { children } = this.props;
     return (
@@ -11,6 +19,7 @@ export default class TypeaheadInput extends Component {
         type={this.props.type || 'text'}
         placeholder={this.props.placeholder}
         onChange={(evt) => this.onChange(evt)}
+        onKeyDown={(evt) => this.onKeyDown(evt)}
       />)
   }
 }

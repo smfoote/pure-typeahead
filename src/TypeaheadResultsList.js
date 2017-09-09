@@ -13,6 +13,10 @@ export default class TypeaheadResultsList extends Component {
     return resultsCount;
   }
 
+  navigateList(dir) {
+    console.log(dir);
+  }
+
   render() {
     let currentIndex = -1;
     const children = React.Children.map(this.props.children, child => {
