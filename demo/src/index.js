@@ -9,6 +9,10 @@ import TypeaheadResult from '../../src/TypeaheadResult';
 import Styles from '../../src/styles';
 
 class Demo extends Component {
+  resultSelected(result) {
+    console.log(result);
+  }
+
   render() {
     return <div>
       <h1>pure-typeahead Demo</h1>
@@ -17,11 +21,11 @@ class Demo extends Component {
         <TypeaheadInput onChange={()=>{}}/>
         <TypeaheadResultsList>
           <h3>Dogs</h3>
-          <TypeaheadResult onSelect={()=>{}}>Puppy</TypeaheadResult>
-          <TypeaheadResult onSelect={()=>{}}>Beagle</TypeaheadResult>
+          <TypeaheadResult onSelect={()=>{this.resultSelected('Puppy')}}>Puppy</TypeaheadResult>
+          <TypeaheadResult onSelect={()=>{this.resultSelected('Beagle')}}>Beagle</TypeaheadResult>
           <h3>Cats</h3>
-          <TypeaheadResult onSelect={()=>{}}>Alley</TypeaheadResult>
-          <TypeaheadResult onSelect={()=>{}}>Tabby</TypeaheadResult>
+          <TypeaheadResult onSelect={()=>{this.resultSelected('Alley cat')}}>Alley</TypeaheadResult>
+          <TypeaheadResult onSelect={()=>{this.resultSelected('Tabby cat')}}>Tabby</TypeaheadResult>
         </TypeaheadResultsList>
       </Typeahead>
       <Styles/>
