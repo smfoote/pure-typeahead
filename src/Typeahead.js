@@ -15,12 +15,17 @@ export default class Typeahead extends Component {
     this.resultsList.navigateList(dir);
   }
 
+  updateHighlightedIndex(highlightedIndex) {
+    this.setState({ highlightedIndex });
+  }
+
   render() {
     const children = React.Children.map(this.props.children, child => {
       if (child) {
         if (child.type === TypeaheadResultsList) {
           return React.cloneElement(child, {
             highlightedIndex: this.state.highlightedIndex,
+            updateHighlightedIndex: this.updateHighlightedIndex.bind(this),
             ref: (ref => this.resultsList = ref)
           });
         } else if (child.type === TypeaheadInput) {

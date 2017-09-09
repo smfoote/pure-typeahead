@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import TypeaheadResult from './TypeaheadResult'
 
+const dirMap = {
+  'ArrowDown': 1,
+  'ArrowUp': -1
+};
+
 export default class TypeaheadResultsList extends Component {
 
   countResults() {
@@ -14,7 +19,11 @@ export default class TypeaheadResultsList extends Component {
   }
 
   navigateList(dir) {
-    console.log(dir);
+    const count = this.countResults();
+    const { highlightedIndex } = this.props;
+    this.props.updateHighlightedIndex(
+      (highlightedIndex + dirMap[dir] + count) % count
+    );
   }
 
   render() {
