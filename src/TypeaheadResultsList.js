@@ -14,7 +14,16 @@ export default class TypeaheadResultsList extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    let currentIndex = -1;
+    const children = React.Children.map(this.props.children, child => {
+      if (child && child.type === TypeaheadResult) {
+        currentIndex++;
+        return React.cloneElement(child, {
+          isHighlighted: currentIndex === this.props.highlightedIndex
+        })
+      }
+      return child;
+    });
     return <typeahead-results-list>
       {children}
     </typeahead-results-list>
