@@ -19,6 +19,10 @@ export default class Typeahead extends Component {
     this.setState({ highlightedIndex });
   }
 
+  selectHighlightedResult() {
+    this.resultsList.selectResult(this.state.highlightedIndex);
+  }
+
   render() {
     const children = React.Children.map(this.props.children, child => {
       if (child) {
@@ -30,7 +34,8 @@ export default class Typeahead extends Component {
           });
         } else if (child.type === TypeaheadInput) {
           return React.cloneElement(child, {
-            arrowKeyPressed: this.navigateList.bind(this)
+            arrowKeyPressed: this.navigateList.bind(this),
+            enterKeyPressed: this.selectHighlightedResult.bind(this)
           });
         }
       }
