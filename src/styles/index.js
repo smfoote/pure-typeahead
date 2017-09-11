@@ -19,6 +19,9 @@ export default class extends Component {
       }
       typeahead-results-list {
         display: block;
+        position: absolute;
+        width: 450px;
+        background-color: #FFF;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
       }
       typeahead-results-list h3 {
@@ -40,6 +43,12 @@ export default class extends Component {
       typeahead-result:hover,
       typeahead-result.highlighted {
         background-color: #DDD;
+      }
+
+      .city-selection {
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
       }
     `}</style>
   }
