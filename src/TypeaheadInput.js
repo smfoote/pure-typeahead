@@ -8,6 +8,7 @@ export default class TypeaheadInput extends Component {
   onKeyDown(evt) {
     const { key } = evt;
     if (key === 'ArrowDown' || key === 'ArrowUp') {
+      evt.preventDefault();
       this.props.arrowKeyPressed(key);
     } else if (key === 'Enter') {
       this.props.enterKeyPressed();

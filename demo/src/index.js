@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 
+import { cities } from './cities';
 import Typeahead from '../../src/Typeahead';
 import TypeaheadInput from '../../src/TypeaheadInput';
 import TypeaheadResultsList from '../../src/TypeaheadResultsList';
@@ -9,29 +10,66 @@ import TypeaheadResult from '../../src/TypeaheadResult';
 import Styles from '../../src/styles';
 
 class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: {},
+      visibleResults: []
+    }
+  }
   typeaheadInputChange(str) {
-    console.log(str);
+    const { results } = this.state;
+    let visibleResults = [];
+    if (str) {
+      if (results.hasOwnProperty(str)) {
+        visibleResults = results[str];
+      } else {
+        visibleResults = cities.filter(
+          city => city.name.match(new RegExp(str, 'i'))
+        );
+        this.setState({
+          results: {
+            ...results,
+            [str]: visibleResults
+          }
+        })
+      }
+    }
+    this.setState({
+      visibleResults
+    });
   }
 
   resultSelected(result) {
-    console.log(result);
+    this.setState({
+      selectedCity: result,
+      visibleResults: []
+    })
   }
 
   render() {
+    const { selectedCity, visibleResults } = this.state;
     return <div>
-      <h1>pure-typeahead Demo</h1>
-
+      <h1>Cities of Utah</h1>
       <Typeahead>
         <TypeaheadInput onChange={(str)=> this.typeaheadInputChange(str)}/>
         <TypeaheadResultsList>
-          <h3>Dogs</h3>
-          <TypeaheadResult onSelect={()=>{this.resultSelected('Puppy')}}>Puppy</TypeaheadResult>
-          <TypeaheadResult onSelect={()=>{this.resultSelected('Beagle')}}>Beagle</TypeaheadResult>
-          <h3>Cats</h3>
-          <TypeaheadResult onSelect={()=>{this.resultSelected('Alley cat')}}>Alley</TypeaheadResult>
-          <TypeaheadResult onSelect={()=>{this.resultSelected('Tabby cat')}}>Tabby</TypeaheadResult>
+          {visibleResults.map((result, idx) => (
+            <TypeaheadResult key={idx} onSelect={()=>{this.resultSelected(result)}}>{result.name}</TypeaheadResult>
+          ))}
         </TypeaheadResultsList>
       </Typeahead>
+      {
+        selectedCity ? (
+          <div className="city-selection">
+            <h2>{selectedCity.name}</h2>
+            <p>Of {selectedCity.county}</p>
+            {selectedCity.yearSettled ? <p>Settled in {selectedCity.yearSettled}</p> : null}
+            <p>Population: {selectedCity.population}</p>
+          </div>
+        ) : null
+      }
+
       <Styles/>
     </div>
   }
