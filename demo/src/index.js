@@ -9,6 +9,10 @@ import TypeaheadResult from '../../src/TypeaheadResult';
 import Styles from '../../src/styles';
 
 class Demo extends Component {
+  typeaheadInputChange(str) {
+    console.log(str);
+  }
+
   resultSelected(result) {
     console.log(result);
   }
@@ -18,7 +22,7 @@ class Demo extends Component {
       <h1>pure-typeahead Demo</h1>
 
       <Typeahead>
-        <TypeaheadInput onChange={()=>{}}/>
+        <TypeaheadInput onChange={(str)=> this.typeaheadInputChange(str)}/>
         <TypeaheadResultsList>
           <h3>Dogs</h3>
           <TypeaheadResult onSelect={()=>{this.resultSelected('Puppy')}}>Puppy</TypeaheadResult>
