@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 
 import { cities } from './cities';
+import { nevadaCities } from './nevadaCities';
 import Typeahead from '../../src/Typeahead';
 import TypeaheadInput from '../../src/TypeaheadInput';
 import TypeaheadResultsList from '../../src/TypeaheadResultsList';
@@ -14,9 +15,13 @@ class Demo extends Component {
     super(props);
     this.state = {
       results: {},
-      visibleResults: []
+      visibleResults: [],
+      nevadaResults: {},
+      nevadaVisibleResults: [],
+      currentSearch: ''
     }
   }
+
   typeaheadInputChange(str) {
     const { results } = this.state;
     let visibleResults = [];
@@ -36,8 +41,36 @@ class Demo extends Component {
       }
     }
     this.setState({
-      visibleResults
+      visibleResults,
+      currentSearch: str
     });
+  }
+
+  nevadaTypeaheadInputChange(str) {
+    const { nevadaResults } = this.state;
+    this.setState({ loadingNevadaResults: true });
+    setTimeout(() => {
+      let nevadaVisibleResults = [];
+      if (str) {
+        if (nevadaResults.hasOwnProperty(str)) {
+          nevadaVisibleResults = nevadaResults[str];
+        } else {
+          nevadaVisibleResults = nevadaCities.filter(
+            city => city.name.match(new RegExp(str, 'i'))
+          );
+          this.setState({
+            nevadaResults: {
+              ...nevadaResults,
+              [str]: nevadaVisibleResults
+            }
+          })
+        }
+      }
+      this.setState({
+        nevadaVisibleResults,
+        loadingNevadaResults: false
+      });
+    }, 1000);
   }
 
   resultSelected(result) {
@@ -45,6 +78,21 @@ class Demo extends Component {
       selectedCity: result,
       visibleResults: []
     })
+  }
+
+  focusNevadaTypeahead() {
+    this.nevadaInput.focus();
+  }
+
+  groupCitiesByCounties(cities) {
+    return cities.reduce((acc, city) => {
+      if (acc[city.county]) {
+        acc[city.county].push(city);
+      } else {
+        acc[city.county] = [city];
+      }
+      return acc;
+    }, {});
   }
 
   renderGroupedCountyResults(counties) {
@@ -59,22 +107,44 @@ class Demo extends Component {
     }, []);
   }
 
+  renderNevadaTypeahead() {
+    const counties = this.groupCitiesByCounties(this.state.nevadaVisibleResults);
+    return (
+      <TypeaheadResult key="nvTA" onHighlight={() => this.focusNevadaTypeahead()}>
+        <Typeahead>
+          <TypeaheadInput
+            placeholder="Try a Nevada city instead?"
+            onChange={(str) => this.nevadaTypeaheadInputChange(str)}
+            ref={ref => this.nevadaInput = ref}
+          />
+          <TypeaheadResultsList>
+            {
+              this.state.loadingNevadaResults ?
+              [
+                <h3>Loading...</h3>,
+                <img src="https://media.giphy.com/media/9UqRcQHzBou6A/giphy.gif"/>
+              ] :
+              this.renderGroupedCountyResults(counties)
+            }
+          </TypeaheadResultsList>
+        </Typeahead>
+      </TypeaheadResult>
+    )
+  }
+
   render() {
     const { selectedCity, visibleResults } = this.state;
-    const counties = visibleResults.reduce((acc, city) => {
-      if (acc[city.county]) {
-        acc[city.county].push(city);
-      } else {
-        acc[city.county] = [city];
-      }
-      return acc;
-    }, {});
+    const counties = this.groupCitiesByCounties(visibleResults);
     return <div>
       <h1>Cities of Utah</h1>
       <Typeahead>
-        <TypeaheadInput onChange={(str)=> this.typeaheadInputChange(str)}/>
+        <TypeaheadInput onChange={(str) => this.typeaheadInputChange(str)}/>
         <TypeaheadResultsList>
-          {this.renderGroupedCountyResults(counties)}
+          {[
+            this.renderGroupedCountyResults(counties),
+            (this.state.currentSearch.length && !selectedCity && visibleResults.length< 2 ?
+            this.renderNevadaTypeahead() : null)
+          ]}
         </TypeaheadResultsList>
       </Typeahead>
       {

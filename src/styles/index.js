@@ -11,6 +11,12 @@ export default class extends Component {
         width: 450px;
         margin: 0 auto;
       }
+      pure-typeahead pure-typeahead {
+        max-width: 100%;
+      }
+      pure-typeahead pure-typeahead typeahead-results-list img {
+        max-width: 100%;
+      }
       pure-typeahead input {
         width: 100%;
         padding: 4px;

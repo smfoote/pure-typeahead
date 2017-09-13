@@ -15,10 +15,15 @@ export default class TypeaheadInput extends Component {
     }
   }
 
+  focus() {
+    this.input.focus();
+  }
+
   render() {
     const { children } = this.props;
     return (
       <input
+        ref={ref => this.input = ref}
         type={this.props.type || 'text'}
         placeholder={this.props.placeholder}
         onChange={(evt) => this.onChange(evt)}
