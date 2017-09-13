@@ -20,15 +20,15 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "15.x"
+    "react": "16.x"
   },
   "devDependencies": {
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
     "jest-enzyme": "^3.8.0",
     "nwb": "0.18.x",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "next",
+    "react-dom": "next",
     "react-test-renderer": "^15.6.1"
   },
   "jest": {
