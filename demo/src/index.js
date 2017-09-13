@@ -47,16 +47,34 @@ class Demo extends Component {
     })
   }
 
+  renderGroupedCountyResults(counties) {
+    return Object.keys(counties).reduce((arr, county) => {
+      return [
+        ...arr,
+        (<h3 key={county}>{county}</h3>),
+        ...(counties[county].map(city => (
+          <TypeaheadResult onSelect={() => this.resultSelected(city)}>{city.name}</TypeaheadResult>
+        )))
+      ]
+    }, []);
+  }
+
   render() {
     const { selectedCity, visibleResults } = this.state;
+    const counties = visibleResults.reduce((acc, city) => {
+      if (acc[city.county]) {
+        acc[city.county].push(city);
+      } else {
+        acc[city.county] = [city];
+      }
+      return acc;
+    }, {});
     return <div>
       <h1>Cities of Utah</h1>
       <Typeahead>
         <TypeaheadInput onChange={(str)=> this.typeaheadInputChange(str)}/>
         <TypeaheadResultsList>
-          {visibleResults.map((result, idx) => (
-            <TypeaheadResult key={idx} onSelect={()=>{this.resultSelected(result)}}>{result.name}</TypeaheadResult>
-          ))}
+          {this.renderGroupedCountyResults(counties)}
         </TypeaheadResultsList>
       </Typeahead>
       {
