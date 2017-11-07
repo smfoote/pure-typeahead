@@ -7,7 +7,7 @@ import TypeaheadInput from '../../src/TypeaheadInput';
 import TypeaheadResultsList from '../../src/TypeaheadResultsList';
 import TypeaheadResult from '../../src/TypeaheadResult';
 
-import Styles from '../../src/styles';
+import Styles from './styles';
 
 class Demo extends Component {
   constructor(props) {
@@ -36,14 +36,16 @@ class Demo extends Component {
       }
     }
     this.setState({
-      visibleResults
+      visibleResults,
+      taValue: str
     });
   }
 
   resultSelected(result) {
     this.setState({
       selectedCity: result,
-      visibleResults: []
+      visibleResults: [],
+      taValue: ''
     })
   }
 
@@ -72,7 +74,7 @@ class Demo extends Component {
     return <div>
       <h1>Cities of Utah</h1>
       <Typeahead>
-        <TypeaheadInput onChange={(str)=> this.typeaheadInputChange(str)}/>
+        <TypeaheadInput value={this.state.taValue} onChange={(str)=> this.typeaheadInputChange(str)}/>
         <TypeaheadResultsList>
           {this.renderGroupedCountyResults(counties)}
         </TypeaheadResultsList>
