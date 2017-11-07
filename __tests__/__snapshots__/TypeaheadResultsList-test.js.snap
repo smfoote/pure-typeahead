@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typeahead renders self and subcomponents 1`] = `
+<TypeaheadResultsList
+  highlightedIndex={-1}
+  updateHighlightedIndex={[Function]}
+>
+  <typeahead-results-list>
+    <h3
+      key=".0"
+    >
+      Cities
+    </h3>
+    <TypeaheadResult
+      isHighlighted={false}
+      key=".1"
+    >
+      <typeahead-result
+        class={null}
+        onClick={[Function]}
+      >
+        Las Vegas
+      </typeahead-result>
+    </TypeaheadResult>
+    <TypeaheadResult
+      isHighlighted={false}
+      key=".2"
+    >
+      <typeahead-result
+        class={null}
+        onClick={[Function]}
+      >
+        Los Angeles
+      </typeahead-result>
+    </TypeaheadResult>
+    <TypeaheadResult
+      isHighlighted={false}
+      key=".3"
+    >
+      <typeahead-result
+        class={null}
+        onClick={[Function]}
+      >
+        San Francisco
+      </typeahead-result>
+    </TypeaheadResult>
+  </typeahead-results-list>
+</TypeaheadResultsList>
+`;
