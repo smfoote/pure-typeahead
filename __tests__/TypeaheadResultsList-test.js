@@ -24,7 +24,7 @@ const setup = () => {
   };
 };
 
-describe('Typeahead', () => {
+describe('TypeaheadResultsList', () => {
   it('renders self and subcomponents', () => {
     const { wrapper } = setup();
     expect(toJson(wrapper)).toMatchSnapshot();

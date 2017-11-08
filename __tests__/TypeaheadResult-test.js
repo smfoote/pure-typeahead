@@ -18,7 +18,7 @@ const shallowSetup = () => {
   };
 };
 
-describe('Typeahead', () => {
+describe('TypeaheadResult', () => {
   it('renders self and subcomponents', () => {
     const { wrapper } = shallowSetup();
     expect(toJson(wrapper)).toMatchSnapshot();
