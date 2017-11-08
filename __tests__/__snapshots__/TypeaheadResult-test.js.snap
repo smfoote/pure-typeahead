@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Typeahead renders self and subcomponents 1`] = `
+exports[`TypeaheadResult renders self and subcomponents 1`] = `
 <typeahead-result
   class={null}
   onClick={[Function]}
@@ -9,7 +9,7 @@ exports[`Typeahead renders self and subcomponents 1`] = `
 </typeahead-result>
 `;
 
-exports[`Typeahead renders self and subcomponents, isHighlighted is true 1`] = `
+exports[`TypeaheadResult renders self and subcomponents, isHighlighted is true 1`] = `
 <typeahead-result
   class="highlighted"
   onClick={[Function]}

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Typeahead renders self and subcomponents 1`] = `
+exports[`TypeaheadInput renders self and subcomponents 1`] = `
 <input
   onChange={[Function]}
   onKeyDown={[Function]}

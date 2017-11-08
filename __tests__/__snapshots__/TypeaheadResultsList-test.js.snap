@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Typeahead renders self and subcomponents 1`] = `
+exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
 <TypeaheadResultsList
   highlightedIndex={-1}
   updateHighlightedIndex={[Function]}
