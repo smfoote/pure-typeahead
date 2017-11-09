@@ -41,7 +41,7 @@ export default class extends Component {
         border-bottom: 1px solid #BBB;
       }
       typeahead-result:hover,
-      typeahead-result.highlighted {
+      typeahead-result.typeahead-highlighted {
         background-color: #DDD;
       }
 

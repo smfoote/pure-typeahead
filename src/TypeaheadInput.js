@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 export default class TypeaheadInput extends Component {
   onChange(evt) {
-    this.props.onChange(evt.target.value);
+    this.props.onChange(evt);
   }
 
   onKeyDown(evt) {
