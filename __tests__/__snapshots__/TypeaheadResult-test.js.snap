@@ -11,7 +11,7 @@ exports[`TypeaheadResult renders self and subcomponents 1`] = `
 
 exports[`TypeaheadResult renders self and subcomponents, isHighlighted is true 1`] = `
 <typeahead-result
-  class="highlighted"
+  class="typeahead-highlighted"
   onClick={[Function]}
 >
   Las Vegas

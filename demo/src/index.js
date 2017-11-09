@@ -17,7 +17,7 @@ class Demo extends Component {
       visibleResults: []
     }
   }
-  typeaheadInputChange(str) {
+  typeaheadInputChange({ target: { value: str}}) {
     const { results } = this.state;
     let visibleResults = [];
     if (str) {

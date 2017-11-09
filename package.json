@@ -1,6 +1,6 @@
 {
   "name": "pure-typeahead",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "pure-typeahead React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -16,7 +16,7 @@
     "start": "nwb serve-react-demo",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "jest --watch"
   },
   "dependencies": {},
   "peerDependencies": {

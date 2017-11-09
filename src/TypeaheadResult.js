@@ -10,7 +10,7 @@ export default class TypeaheadResult extends Component {
     return (
       <typeahead-result
         onClick={() => this.select()}
-        class={this.props.isHighlighted ? 'highlighted' : null}
+        class={this.props.isHighlighted ? 'typeahead-highlighted' : null}
       >
         {children}
       </typeahead-result>
