@@ -215,5 +215,5 @@ class Demo extends Component {
 
 export default Demo;
 ```
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
+[npm-badge]: https://img.shields.io/npm/v/pure-typeahead.png?style=flat-square
 [npm]: https://www.npmjs.org/package/pure-typeahead
