@@ -1,16 +1,30 @@
 import React, {Component} from 'react'
 
 export default class TypeaheadResult extends Component {
-  select() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isHighlighted && !this.props.isHighlighted) {
+      this.onHighlight();
+    }
+  }
+
+  onHighlight = () => {
+    if (typeof this.props.onHighlight === 'function') {
+      this.props.onHighlight();
+    }
+  }
+
+  select = () => {
     this.props.onSelect();
   }
 
   render() {
-    const { children } = this.props;
+    const { children, isHighlighted } = this.props;
+    const highlightedClass = isHighlighted ? ['typeahead-highlighted'] : [];
+    const classes = [this.props.className].concat(highlightedClass).join(' ');
     return (
       <typeahead-result
-        onClick={() => this.select()}
-        class={this.props.isHighlighted ? 'typeahead-highlighted' : null}
+        onClick={this.select}
+        class={classes}
       >
         {children}
       </typeahead-result>

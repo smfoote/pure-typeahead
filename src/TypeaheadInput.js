@@ -19,6 +19,7 @@ export default class TypeaheadInput extends Component {
     const { children } = this.props;
     return (
       <input
+        className={this.props.className}
         type={this.props.type || 'text'}
         placeholder={this.props.placeholder}
         value={this.props.value}

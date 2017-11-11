@@ -57,6 +57,7 @@ This component, which must be a direct child of the `TypeaheadResultsList` compo
 |Name|Required|Type|Default Value|Description|
 |----|--------|----|-----------|
 |onSelect|required|function|N/A|This function will be called when the typeahead is selected, whether by click or by keyboard interaction.|
+|onHighlight|optional|function|N/A|This function will be called when the typeahead is highlighted through keyboard interaction|
 
 ## Examples
 
