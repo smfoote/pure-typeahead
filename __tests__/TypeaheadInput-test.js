@@ -13,7 +13,8 @@ const shallowSetup = () => {
     value: 'hi',
     onChange: jest.fn(),
     arrowKeyPressed: jest.fn(),
-    enterKeyPressed: jest.fn()
+    enterKeyPressed: jest.fn(),
+    escapeKeyPressed: jest.fn()
   };
   return {
     wrapper: shallow(<TypeaheadInput {...props}/>),
@@ -56,6 +57,12 @@ describe('TypeaheadInput', () => {
     const { props, wrapper } = shallowSetup();
     wrapper.find('input').simulate('keydown', {...evtMock, key: 'Enter'});
     expect(props.enterKeyPressed).toHaveBeenCalled();
+  });
+
+  it('calls enterKeyPressed when Enter key is pressed', () => {
+    const { props, wrapper } = shallowSetup();
+    wrapper.find('input').simulate('keydown', {...evtMock, key: 'Escape'});
+    expect(props.escapeKeyPressed).toHaveBeenCalled();
   });
 
   it('does not call enterKeyPressed or arrowKeyPressed when a letter is pressed', () => {

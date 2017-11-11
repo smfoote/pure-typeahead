@@ -10,7 +10,9 @@ import TypeaheadResultsList from '../src/TypeaheadResultsList';
 Enzyme.configure({ adapter: new Adapter() });
 
 const shallowSetup = () => {
-  const props = {};
+  const props = {
+    onDismiss: jest.fn()
+  };
   return {
     wrapper: shallow(<Typeahead {...props}/>),
     props
@@ -18,13 +20,17 @@ const shallowSetup = () => {
 };
 
 const mountSetup = () => {
+  const props = {
+    onDismiss: jest.fn()
+  };
   return {
-    wrapper: mount(<Typeahead>
+    wrapper: mount(<Typeahead {...props}>
       hi
       <TypeaheadInput value="hello" onChange={jest.fn()}/>
       <TypeaheadResultsList>RESULTS</TypeaheadResultsList>
       {null}
-    </Typeahead>)
+    </Typeahead>),
+    props
   };
 };
 
@@ -44,6 +50,12 @@ describe('Typeahead', () => {
     wrapper.instance().resultsList.navigateList = jest.fn();
     wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowDown');
     expect(wrapper.instance().resultsList.navigateList).toHaveBeenCalled();
+  });
+
+  it('should call props.onDismiss when escapeKeyPressed is called', () => {
+    const { wrapper, props } = mountSetup();
+    wrapper.find('TypeaheadInput').props().escapeKeyPressed();
+    expect(props.onDismiss).toHaveBeenCalled();
   });
 
   it('should set the highlightedIndex state on updateHighlightedIndex', () => {

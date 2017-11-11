@@ -31,6 +31,10 @@ This component consists of four React components: `Typeahead`, `TypeaheadInput`,
 
 The `Typeahead` component wraps the other, more functional component. It's purpose is to orchestrate the interactions of its children components. The `Typeahead` component needs a `TypeaheadInput` component and a `TypeaheadResultsList` component as direct children. It can have other children as well. For CSS targeting purposes, the `Typeahead` component produces a custom element tag, `<pure-typeahead>`, in the rendered DOM.
 
+|Name|Required|Type|Default Value|Description|
+|----|--------|----|-----------|
+|onDismiss|optional|function|No-op function|This function is called when the typeahead is dismissed when the user presses the escape key|
+
 ### TypeaheadInput component
 
 The `TypeaheadInput` component is the input where the user will type their typeahead query. For accessibility to work properly, you need to use `TypeaheadInput` instead of a plain `<input>` element.
@@ -43,6 +47,10 @@ The `TypeaheadInput` component is the input where the user will type their typea
 |type|optional|string|'text'|The type of input to be used. Don't use `'checkbox'` or `'radio'` and expect this thing to work.|
 |placeholder|optional|string|none|The placeholder text to be placed in the input.|
 |onChange|required|function|N/A|The function to be called when the value of the input changes. This is where you will likely query for new typeahead results. You also must update the `value` prop within this function.|
+|onKeyDown|optional|function|No-op function|Passes through the input's onKeyDown function|
+|onKeyUp|optional|function|No-op function|Passes through the input's onKeyUp function|
+|onBlur|optional|function|No-op function|Passes through the input's onBlur function|
+|onFocus|optional|function|No-op function|Passes through the input's onFocus function|
 
 ### TypeaheadResultsList component
 
@@ -57,7 +65,7 @@ This component, which must be a direct child of the `TypeaheadResultsList` compo
 |Name|Required|Type|Default Value|Description|
 |----|--------|----|-----------|
 |onSelect|required|function|N/A|This function will be called when the typeahead is selected, whether by click or by keyboard interaction.|
-|onHighlight|optional|function|N/A|This function will be called when the typeahead is highlighted through keyboard interaction|
+|onHighlight|optional|function|No-op function|This function will be called when the typeahead is highlighted through keyboard interaction|
 
 ## Examples
 
