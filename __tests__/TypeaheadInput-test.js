@@ -22,6 +22,20 @@ const shallowSetup = () => {
   };
 };
 
+const mountSetup = () => {
+  const props = {
+    value: 'hi',
+    onChange: jest.fn(),
+    arrowKeyPressed: jest.fn(),
+    enterKeyPressed: jest.fn(),
+    escapeKeyPressed: jest.fn()
+  };
+  return {
+    wrapper: mount(<TypeaheadInput {...props}/>),
+    props
+  };
+};
+
 describe('TypeaheadInput', () => {
   it('renders self and subcomponents', () => {
     const { wrapper } = shallowSetup();
@@ -70,5 +84,12 @@ describe('TypeaheadInput', () => {
     wrapper.find('input').simulate('keydown', {...evtMock, key: 'a'});
     expect(props.enterKeyPressed).toHaveBeenCalledTimes(0);
     expect(props.arrowKeyPressed).toHaveBeenCalledTimes(0);
+  });
+
+  it('should focus the input when `focus` is called', () => {
+    const { props, wrapper } = mountSetup();
+    wrapper.instance().inputRef.focus = jest.fn();
+    wrapper.instance().focus();
+    expect(wrapper.instance().inputRef.focus).toHaveBeenCalled();
   });
 });

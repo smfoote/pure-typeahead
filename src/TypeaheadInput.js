@@ -32,10 +32,15 @@ export default class TypeaheadInput extends Component {
     this.props.onKeyDown(evt);
   }
 
+  focus() {
+    this.inputRef.focus();
+  }
+
   render() {
     const { children } = this.props;
     return (
       <input
+        ref={input => this.inputRef = input}
         className={this.props.className}
         type={this.props.type || 'text'}
         placeholder={this.props.placeholder}
