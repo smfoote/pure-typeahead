@@ -43,7 +43,7 @@ export default class TypeaheadResultsList extends Component {
       }
       return child;
     });
-    return <typeahead-results-list>
+    return <typeahead-results-list class={this.props.className}>
       {children}
     </typeahead-results-list>
   }

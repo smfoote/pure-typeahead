@@ -41,6 +41,6 @@ export default class Typeahead extends Component {
       }
       return child;
     });
-    return <pure-typeahead>{children}</pure-typeahead>
+    return <pure-typeahead class={this.props.className}>{children}</pure-typeahead>
   }
 }

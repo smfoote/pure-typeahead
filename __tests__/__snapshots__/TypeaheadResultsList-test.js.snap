@@ -16,7 +16,7 @@ exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
       key=".1"
     >
       <typeahead-result
-        class={null}
+        class=""
         onClick={[Function]}
       >
         Las Vegas
@@ -27,7 +27,7 @@ exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
       key=".2"
     >
       <typeahead-result
-        class={null}
+        class=""
         onClick={[Function]}
       >
         Los Angeles
@@ -38,7 +38,7 @@ exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
       key=".3"
     >
       <typeahead-result
-        class={null}
+        class=""
         onClick={[Function]}
       >
         San Francisco

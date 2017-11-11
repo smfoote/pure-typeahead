@@ -10,6 +10,7 @@ Enzyme.configure({ adapter: new Adapter() });
 const shallowSetup = () => {
   const props = {
     onSelect: jest.fn(),
+    onHighlight: jest.fn(),
     isHighlighted: false,
   };
   return {
@@ -35,5 +36,11 @@ describe('TypeaheadResult', () => {
     const { props, wrapper } = shallowSetup();
     wrapper.find('typeahead-result').simulate('click');
     expect(props.onSelect).toHaveBeenCalled();
+  });
+
+  it('should call onHighlight when result becomes highlighted', () => {
+    const { props, wrapper } = shallowSetup();
+    wrapper.setProps({isHighlighted: true});
+    expect(props.onHighlight).toHaveBeenCalled();
   });
 });
