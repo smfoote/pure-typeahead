@@ -4,6 +4,10 @@ import TypeaheadResultsList from './TypeaheadResultsList';
 import TypeaheadInput from './TypeaheadInput';
 
 export default class Typeahead extends Component {
+  static defaultProps = {
+    onDismiss: () => {}
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -11,16 +15,20 @@ export default class Typeahead extends Component {
     };
   }
 
-  navigateList(dir) {
+  navigateList = (dir) => {
     this.resultsList.navigateList(dir);
   }
 
-  updateHighlightedIndex(highlightedIndex) {
+  updateHighlightedIndex = (highlightedIndex) => {
     this.setState({ highlightedIndex });
   }
 
-  selectHighlightedResult() {
+  selectHighlightedResult = () => {
     this.resultsList.selectResult(this.state.highlightedIndex);
+  }
+
+  dismissTypeahead = () => {
+    this.props.onDismiss();
   }
 
   render() {
@@ -29,13 +37,14 @@ export default class Typeahead extends Component {
         if (child.type === TypeaheadResultsList) {
           return React.cloneElement(child, {
             highlightedIndex: this.state.highlightedIndex,
-            updateHighlightedIndex: this.updateHighlightedIndex.bind(this),
+            updateHighlightedIndex: this.updateHighlightedIndex,
             ref: (ref => this.resultsList = ref)
           });
         } else if (child.type === TypeaheadInput) {
           return React.cloneElement(child, {
-            arrowKeyPressed: this.navigateList.bind(this),
-            enterKeyPressed: this.selectHighlightedResult.bind(this)
+            arrowKeyPressed: this.navigateList,
+            enterKeyPressed: this.selectHighlightedResult,
+            escapeKeyPressed: this.dismissTypeahead
           });
         }
       }

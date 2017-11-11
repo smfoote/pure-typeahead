@@ -1,18 +1,35 @@
 import React, {Component} from 'react'
 
+const noop = () =>{};
+
 export default class TypeaheadInput extends Component {
+  static defaultProps = {
+    onKeyDown: noop,
+    onBlur: noop,
+    onFocus: noop,
+    onKeyUp: noop,
+  }
+
   onChange(evt) {
     this.props.onChange(evt);
   }
 
   onKeyDown(evt) {
     const { key } = evt;
-    if (key === 'ArrowDown' || key === 'ArrowUp') {
-      evt.preventDefault();
-      this.props.arrowKeyPressed(key);
-    } else if (key === 'Enter') {
-      this.props.enterKeyPressed();
+    switch(key) {
+      case 'ArrowDown':
+      case 'ArrowUp':
+        evt.preventDefault();
+        this.props.arrowKeyPressed(key);
+        break;
+      case 'Enter':
+        this.props.enterKeyPressed();
+        break;
+      case 'Escape':
+        this.props.escapeKeyPressed();
+        break;
     }
+    this.props.onKeyDown(evt);
   }
 
   render() {
@@ -25,6 +42,9 @@ export default class TypeaheadInput extends Component {
         value={this.props.value}
         onChange={(evt) => this.onChange(evt)}
         onKeyDown={(evt) => this.onKeyDown(evt)}
+        onKeyUp={this.props.onKeyUp}
+        onBlur={this.props.onBlur}
+        onFocus={this.props.onFocus}
       />)
   }
 }

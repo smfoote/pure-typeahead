@@ -3,19 +3,29 @@
 exports[`Typeahead renders self and subcomponents 1`] = `<pure-typeahead />`;
 
 exports[`Typeahead renders the children 1`] = `
-<Typeahead>
+<Typeahead
+  onDismiss={[Function]}
+>
   <pure-typeahead>
     hi
     <TypeaheadInput
       arrowKeyPressed={[Function]}
       enterKeyPressed={[Function]}
+      escapeKeyPressed={[Function]}
       key=".1"
+      onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
       value="hello"
     >
       <input
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
         onKeyDown={[Function]}
+        onKeyUp={[Function]}
         type="text"
         value="hello"
       />

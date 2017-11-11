@@ -2,8 +2,11 @@
 
 exports[`TypeaheadInput renders self and subcomponents 1`] = `
 <input
+  onBlur={[Function]}
   onChange={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
+  onKeyUp={[Function]}
   type="text"
   value="hi"
 />
