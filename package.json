@@ -1,6 +1,6 @@
 {
   "name": "pure-typeahead",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "pure-typeahead React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -50,6 +50,8 @@
   "license": "MIT",
   "repository": "",
   "keywords": [
-    "react-component"
+    "react-component",
+    "typeahead",
+    "autocomplete"
   ]
 }
