@@ -66,10 +66,26 @@ describe('Typeahead', () => {
 
   it('should select the highlightedIndex by calling resultsList.selectResult with the state\'s highlightedIndex', () => {
     const { wrapper } = mountSetup();
+    const highlightedIndex = 3;
+    const evt = { preventDefault: jest.fn() };
     wrapper.instance().resultsList.selectResult = jest.fn();
-    wrapper.setState({highlightedIndex: 3});
-    wrapper.find('TypeaheadInput').props().enterKeyPressed();
+    wrapper.setState({highlightedIndex});
+    wrapper.find('TypeaheadInput').props().enterKeyPressed(evt);
     expect(wrapper.instance().resultsList.selectResult).toHaveBeenCalled();
-    expect(wrapper.instance().resultsList.selectResult).toHaveBeenCalledWith(wrapper.state().highlightedIndex);
+    expect(wrapper.instance().resultsList.selectResult).toHaveBeenCalledWith(highlightedIndex);
+    expect(evt.preventDefault).toHaveBeenCalledTimes(1);
+    expect(wrapper.state('highlightedIndex')).toBe(-1);
+  });
+
+  it('should not select a result or preventDefault if highlightedindex is -1 state\'s highlightedIndex', () => {
+    const { wrapper } = mountSetup();
+    const highlightedIndex = -1;
+    const evt = { preventDefault: jest.fn() };
+    wrapper.instance().resultsList.selectResult = jest.fn();
+    wrapper.setState({highlightedIndex});
+    wrapper.find('TypeaheadInput').props().enterKeyPressed(evt);
+    expect(wrapper.instance().resultsList.selectResult).toHaveBeenCalledTimes(0);
+    expect(evt.preventDefault).toHaveBeenCalledTimes(0);
+    expect(wrapper.state('highlightedIndex')).toBe(-1);
   });
 });
