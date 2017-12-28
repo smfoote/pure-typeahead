@@ -23,6 +23,16 @@ export default class Typeahead extends Component {
     this.setState({ highlightedIndex });
   }
 
+  enterKeyPressed = (evt) => {
+    // If a result is highlighted, select it
+    if (this.state.highlightedIndex !== -1) {
+      evt.preventDefault();
+      this.selectHighlightedResult();
+      // Reset highlighted index
+      this.setState({highlightedIndex: -1});
+    }
+  }
+
   selectHighlightedResult = () => {
     this.resultsList.selectResult(this.state.highlightedIndex);
   }
@@ -43,7 +53,7 @@ export default class Typeahead extends Component {
         } else if (child.type === TypeaheadInput) {
           return React.cloneElement(child, {
             arrowKeyPressed: this.navigateList,
-            enterKeyPressed: this.selectHighlightedResult,
+            enterKeyPressed: this.enterKeyPressed,
             escapeKeyPressed: this.dismissTypeahead
           });
         }

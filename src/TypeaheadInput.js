@@ -23,7 +23,7 @@ export default class TypeaheadInput extends Component {
         this.props.arrowKeyPressed(key);
         break;
       case 'Enter':
-        this.props.enterKeyPressed();
+        this.props.enterKeyPressed(evt);
         break;
       case 'Escape':
         this.props.escapeKeyPressed();
