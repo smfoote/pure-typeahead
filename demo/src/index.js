@@ -74,7 +74,9 @@ class Demo extends Component {
     return <div>
       <h1>Cities of Utah</h1>
       <Typeahead>
+        <label htmlFor="input"><p>Search Cities</p></label>
         <TypeaheadInput
+          id="input"
           value={this.state.taValue}
           ref={ref => this.inputEl = ref}
           onChange={(str)=> this.typeaheadInputChange(str)}

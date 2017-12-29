@@ -41,6 +41,7 @@ export default class TypeaheadInput extends Component {
     return (
       <input
         ref={input => this.inputRef = input}
+        id={this.props.id}
         className={this.props.className}
         type={this.props.type || 'text'}
         placeholder={this.props.placeholder}

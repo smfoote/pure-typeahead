@@ -42,6 +42,16 @@ describe('TypeaheadInput', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
+  it(
+    'passes through id',
+    () => {
+      const { props } = shallowSetup();
+      props.id = 'easy-as-123';
+      const wrapper = shallow(<TypeaheadInput {...props} />);
+      expect(toJson(wrapper)).toMatchSnapshot();
+    }
+  );
+
   it('calls onChange when a change event happesn', () => {
     const { props, wrapper } = shallowSetup();
     wrapper.find('input').simulate('change', {target: {value: 'hello'}});
