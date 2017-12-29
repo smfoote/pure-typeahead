@@ -5,7 +5,6 @@ const noop = () =>{};
 export default class TypeaheadInput extends Component {
   static defaultProps = {
     onKeyDown: noop,
-    onBlur: noop,
     onFocus: noop,
     onKeyUp: noop,
   }
@@ -49,7 +48,6 @@ export default class TypeaheadInput extends Component {
         onChange={(evt) => this.onChange(evt)}
         onKeyDown={(evt) => this.onKeyDown(evt)}
         onKeyUp={this.props.onKeyUp}
-        onBlur={this.props.onBlur}
         onFocus={this.props.onFocus}
       />)
   }

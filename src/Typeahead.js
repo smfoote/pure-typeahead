@@ -5,6 +5,7 @@ import TypeaheadInput from './TypeaheadInput';
 
 export default class Typeahead extends Component {
   static defaultProps = {
+    onBlur: () => {},
     onDismiss: () => {}
   }
 
@@ -60,6 +61,9 @@ export default class Typeahead extends Component {
       }
       return child;
     });
-    return <pure-typeahead class={this.props.className}>{children}</pure-typeahead>
+    return <pure-typeahead
+      class={this.props.className}
+      onBlur={this.props.onBlur}
+    >{children}</pure-typeahead>
   }
 }
