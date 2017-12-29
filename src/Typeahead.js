@@ -42,6 +42,13 @@ export default class Typeahead extends Component {
     this.props.onDismiss();
   }
 
+  onBlur = (evt) => {
+    const { relatedTarget } = evt;
+    if (!relatedTarget || !this.element.contains(relatedTarget)) {
+      this.props.onBlur(evt);
+    }
+  }
+
   render() {
     const children = React.Children.map(this.props.children, child => {
       if (child) {
@@ -63,7 +70,8 @@ export default class Typeahead extends Component {
     });
     return <pure-typeahead
       class={this.props.className}
-      onBlur={this.props.onBlur}
+      onBlur={this.onBlur}
+      ref={ref => this.element = ref}
     >{children}</pure-typeahead>
   }
 }
