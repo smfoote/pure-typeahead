@@ -34,6 +34,7 @@ The `Typeahead` component wraps the other, more functional component. It's purpo
 |Name|Required|Type|Default Value|Description|
 |----|--------|----|-----------|
 |onDismiss|optional|function|No-op function|This function is called when the typeahead is dismissed when the user presses the escape key|
+|onBlur|optional|function|No-op function|This function is called when the entire typeahead component is blurred. If you want to listen to blurs on the input, this is the place to do it|
 
 ### TypeaheadInput component
 

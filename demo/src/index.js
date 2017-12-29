@@ -73,7 +73,7 @@ class Demo extends Component {
     }, {});
     return <div>
       <h1>Cities of Utah</h1>
-      <Typeahead>
+      <Typeahead onBlur={() => console.log('blurred')}>
         <label htmlFor="input"><p>Search Cities</p></label>
         <TypeaheadInput
           id="input"

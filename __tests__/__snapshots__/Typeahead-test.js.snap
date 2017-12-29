@@ -1,19 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Typeahead renders self and subcomponents 1`] = `<pure-typeahead />`;
+exports[`Typeahead renders self and subcomponents 1`] = `
+<pure-typeahead
+  onBlur={[Function]}
+/>
+`;
 
 exports[`Typeahead renders the children 1`] = `
 <Typeahead
+  onBlur={[Function]}
   onDismiss={[Function]}
 >
-  <pure-typeahead>
+  <pure-typeahead
+    onBlur={[Function]}
+  >
     hi
     <TypeaheadInput
       arrowKeyPressed={[Function]}
       enterKeyPressed={[Function]}
       escapeKeyPressed={[Function]}
       key=".1"
-      onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
@@ -21,7 +27,6 @@ exports[`Typeahead renders the children 1`] = `
       value="hello"
     >
       <input
-        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
