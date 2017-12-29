@@ -24,6 +24,7 @@ export default class TypeaheadResult extends Component {
     return (
       <typeahead-result
         onClick={this.select}
+        tabindex="-1"
         class={classes}
       >
         {children}
