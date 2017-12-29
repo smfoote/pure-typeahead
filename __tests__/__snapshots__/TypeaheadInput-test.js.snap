@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TypeaheadInput passes through id 1`] = `
+<input
+  id="easy-as-123"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  type="text"
+  value="hi"
+/>
+`;
+
 exports[`TypeaheadInput renders self and subcomponents 1`] = `
 <input
   onBlur={[Function]}
