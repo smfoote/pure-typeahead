@@ -1,6 +1,6 @@
 {
   "name": "pure-typeahead",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "pure-typeahead React component",
   "main": "lib/index.js",
   "module": "es/index.js",

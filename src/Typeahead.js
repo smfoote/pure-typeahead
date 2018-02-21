@@ -3,6 +3,11 @@ import React, {Component} from 'react'
 import TypeaheadResultsList from './TypeaheadResultsList';
 import TypeaheadInput from './TypeaheadInput';
 
+const dirMap = {
+  'ArrowDown': 1,
+  'ArrowUp': -1
+};
+
 export default class Typeahead extends Component {
   static defaultProps = {
     onBlur: () => {},
@@ -17,7 +22,11 @@ export default class Typeahead extends Component {
   }
 
   navigateList = (dir) => {
-    this.resultsList.navigateList(dir);
+    const count = this.resultsValues.length;
+    const { highlightedIndex } = this.state;
+    this.updateHighlightedIndex(
+      (highlightedIndex + dirMap[dir] + count) % count
+    );
   }
 
   updateHighlightedIndex = (highlightedIndex) => {
@@ -35,7 +44,11 @@ export default class Typeahead extends Component {
   }
 
   selectHighlightedResult = () => {
-    this.resultsList.selectResult(this.state.highlightedIndex);
+    this.select(this.resultsValues[this.state.highlightedIndex]);
+  }
+
+  select = (value) => {
+    this.props.onSelect(value);
   }
 
   dismissTypeahead = () => {
@@ -56,7 +69,8 @@ export default class Typeahead extends Component {
           return React.cloneElement(child, {
             highlightedIndex: this.state.highlightedIndex,
             updateHighlightedIndex: this.updateHighlightedIndex,
-            ref: (ref => this.resultsList = ref)
+            onResultsUpdate: values => { this.resultsValues = values; },
+            _onSelect: (value) => { this.select(value); }
           });
         } else if (child.type === TypeaheadInput) {
           return React.cloneElement(child, {
