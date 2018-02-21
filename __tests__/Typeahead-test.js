@@ -103,13 +103,12 @@ describe('Typeahead', () => {
   });
 
   it('should not select a result or preventDefault if highlightedindex is -1 state\'s highlightedIndex', () => {
-    const { wrapper } = mountSetup();
+    const { wrapper, props } = mountSetup();
     const highlightedIndex = -1;
     const evt = { preventDefault: jest.fn() };
-    wrapper.select = jest.fn();
     wrapper.setState({highlightedIndex});
     wrapper.find('TypeaheadInput').props().enterKeyPressed(evt);
-    expect(wrapper.select).toHaveBeenCalledTimes(0);
+    expect(props.onSelect).toHaveBeenCalledTimes(0);
     expect(evt.preventDefault).toHaveBeenCalledTimes(0);
     expect(wrapper.state('highlightedIndex')).toBe(-1);
   });
