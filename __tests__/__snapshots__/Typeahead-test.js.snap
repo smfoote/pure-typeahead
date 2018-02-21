@@ -10,6 +10,7 @@ exports[`Typeahead renders the children 1`] = `
 <Typeahead
   onBlur={[Function]}
   onDismiss={[Function]}
+  onSelect={[Function]}
 >
   <pure-typeahead
     onBlur={[Function]}
@@ -36,12 +37,59 @@ exports[`Typeahead renders the children 1`] = `
       />
     </TypeaheadInput>
     <TypeaheadResultsList
+      _onSelect={[Function]}
       highlightedIndex={-1}
       key=".2"
+      onResultsUpdate={[Function]}
       updateHighlightedIndex={[Function]}
     >
       <typeahead-results-list>
-        RESULTS
+        <TypeaheadResult
+          _onSelect={[Function]}
+          isHighlighted={false}
+          key=".0"
+          value={
+            Object {
+              "some": "value",
+            }
+          }
+        >
+          <typeahead-result
+            class=""
+            onClick={[Function]}
+            tabindex="-1"
+          >
+            RESULTS
+          </typeahead-result>
+        </TypeaheadResult>
+        <TypeaheadResult
+          _onSelect={[Function]}
+          isHighlighted={false}
+          key=".1"
+          value="hello"
+        >
+          <typeahead-result
+            class=""
+            onClick={[Function]}
+            tabindex="-1"
+          >
+            hello
+          </typeahead-result>
+        </TypeaheadResult>
+        <TypeaheadResult
+          _onSelect={[Function]}
+          isHighlighted={false}
+          key=".2"
+          value="world"
+        >
+          <typeahead-result
+            class=""
+            onClick={[Function]}
+            tabindex="-1"
+          >
+            world
+          </typeahead-result>
+        </TypeaheadResult>
       </typeahead-results-list>
     </TypeaheadResultsList>
   </pure-typeahead>

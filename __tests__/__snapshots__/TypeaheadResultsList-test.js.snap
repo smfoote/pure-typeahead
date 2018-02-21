@@ -3,6 +3,7 @@
 exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
 <TypeaheadResultsList
   highlightedIndex={-1}
+  onResultsUpdate={[Function]}
   updateHighlightedIndex={[Function]}
 >
   <typeahead-results-list>
@@ -12,6 +13,7 @@ exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
       Cities
     </h3>
     <TypeaheadResult
+      _onSelect={[Function]}
       isHighlighted={false}
       key=".1"
     >
@@ -24,6 +26,7 @@ exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
       </typeahead-result>
     </TypeaheadResult>
     <TypeaheadResult
+      _onSelect={[Function]}
       isHighlighted={false}
       key=".2"
     >
@@ -36,6 +39,7 @@ exports[`TypeaheadResultsList renders self and subcomponents 1`] = `
       </typeahead-result>
     </TypeaheadResult>
     <TypeaheadResult
+      _onSelect={[Function]}
       isHighlighted={false}
       key=".3"
     >
