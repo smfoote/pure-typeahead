@@ -27,6 +27,7 @@ exports[`Typeahead renders the children 1`] = `
       value="hello"
     >
       <input
+        autoComplete="off"
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}

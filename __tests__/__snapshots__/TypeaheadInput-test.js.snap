@@ -2,6 +2,7 @@
 
 exports[`TypeaheadInput passes through id 1`] = `
 <input
+  autoComplete="off"
   id="easy-as-123"
   onChange={[Function]}
   onFocus={[Function]}
@@ -14,6 +15,7 @@ exports[`TypeaheadInput passes through id 1`] = `
 
 exports[`TypeaheadInput renders self and subcomponents 1`] = `
 <input
+  autoComplete="off"
   onChange={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
