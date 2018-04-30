@@ -14,7 +14,7 @@ export default class TypeaheadResult extends Component {
   }
 
   select = () => {
-    this.props._onSelect(this.props.value);
+    this.props.onSelect();
   }
 
   render() {

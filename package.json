@@ -1,6 +1,6 @@
 {
   "name": "pure-typeahead",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "pure-typeahead React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -45,10 +45,10 @@
       "^.+\\.js$": "<rootDir>/jest.transform.js"
     }
   },
-  "author": "",
+  "author": "Steven Foote <smfoote@gmail.com>",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/smfoote/pure-typeahead",
   "keywords": [
     "react-component",
     "typeahead",

@@ -6,15 +6,12 @@ import Adapter from 'enzyme-adapter-react-16';
 import Typeahead from '../src/Typeahead';
 import TypeaheadInput from '../src/TypeaheadInput';
 import TypeaheadResultsList from '../src/TypeaheadResultsList';
-import TypeaheadResult from '../src/TypeaheadResult';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const RESULT_VALUE = { some: 'value' };
 const shallowSetup = () => {
   const props = {
-    onDismiss: jest.fn(),
-    onSelect: jest.fn()
+    onDismiss: jest.fn()
   };
   return {
     wrapper: shallow(<Typeahead {...props}/>),
@@ -24,18 +21,14 @@ const shallowSetup = () => {
 
 const mountSetup = () => {
   const props = {
-    onDismiss: jest.fn(),
-    onSelect: jest.fn()
+    onDismiss: jest.fn()
   };
   return {
     wrapper: mount(<Typeahead {...props}>
       hi
       <TypeaheadInput value="hello" onChange={jest.fn()}/>
-      <TypeaheadResultsList>
-        <TypeaheadResult value={RESULT_VALUE}>RESULTS</TypeaheadResult>
-        <TypeaheadResult value={'hello'}>hello</TypeaheadResult>
-        <TypeaheadResult value={'world'}>world</TypeaheadResult>
-      </TypeaheadResultsList>
+      <TypeaheadResultsList>RESULTS</TypeaheadResultsList>
+      {null}
     </Typeahead>),
     props
   };
@@ -52,31 +45,11 @@ describe('Typeahead', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('updates the highlighted index when an arrow key is pressed', () => {
+  it('calls resultsList.navigateList when an arrow key is pressed', () => {
     const { wrapper } = mountSetup();
-    wrapper.setState({highlightedIndex: -1});
+    wrapper.instance().resultsList.navigateList = jest.fn();
     wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowDown');
-    expect(wrapper.state().highlightedIndex).toBe(0);
-  });
-
-  it('should navigate the list, go around the horn', () => {
-    const { wrapper } = mountSetup();
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowDown');
-    expect(wrapper.state().highlightedIndex).toBe(0);
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowDown');
-    expect(wrapper.state().highlightedIndex).toBe(1);
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowDown');
-    expect(wrapper.state().highlightedIndex).toBe(2);
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowDown');
-    expect(wrapper.state().highlightedIndex).toBe(0);
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowUp');
-    expect(wrapper.state().highlightedIndex).toBe(2);
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowUp');
-    expect(wrapper.state().highlightedIndex).toBe(1);
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowUp');
-    expect(wrapper.state().highlightedIndex).toBe(0);
-    wrapper.find('TypeaheadInput').props().arrowKeyPressed('ArrowUp');
-    expect(wrapper.state().highlightedIndex).toBe(2);
+    expect(wrapper.instance().resultsList.navigateList).toHaveBeenCalled();
   });
 
   it('should call props.onDismiss when escapeKeyPressed is called', () => {
@@ -91,24 +64,27 @@ describe('Typeahead', () => {
     expect(wrapper.state().highlightedIndex).toBe(1);
   });
 
-  it('should select the highlighted result', () => {
-    const { wrapper, props } = mountSetup();
-    const highlightedIndex = 0;
+  it('should select the highlightedIndex by calling resultsList.selectResult with the state\'s highlightedIndex', () => {
+    const { wrapper } = mountSetup();
+    const highlightedIndex = 3;
     const evt = { preventDefault: jest.fn() };
+    wrapper.instance().resultsList.selectResult = jest.fn();
     wrapper.setState({highlightedIndex});
     wrapper.find('TypeaheadInput').props().enterKeyPressed(evt);
-    expect(props.onSelect).toHaveBeenCalledWith(RESULT_VALUE);
+    expect(wrapper.instance().resultsList.selectResult).toHaveBeenCalled();
+    expect(wrapper.instance().resultsList.selectResult).toHaveBeenCalledWith(highlightedIndex);
     expect(evt.preventDefault).toHaveBeenCalledTimes(1);
     expect(wrapper.state('highlightedIndex')).toBe(-1);
   });
 
   it('should not select a result or preventDefault if highlightedindex is -1 state\'s highlightedIndex', () => {
-    const { wrapper, props } = mountSetup();
+    const { wrapper } = mountSetup();
     const highlightedIndex = -1;
     const evt = { preventDefault: jest.fn() };
+    wrapper.instance().resultsList.selectResult = jest.fn();
     wrapper.setState({highlightedIndex});
     wrapper.find('TypeaheadInput').props().enterKeyPressed(evt);
-    expect(props.onSelect).toHaveBeenCalledTimes(0);
+    expect(wrapper.instance().resultsList.selectResult).toHaveBeenCalledTimes(0);
     expect(evt.preventDefault).toHaveBeenCalledTimes(0);
     expect(wrapper.state('highlightedIndex')).toBe(-1);
   });

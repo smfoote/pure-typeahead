@@ -33,7 +33,6 @@ The `Typeahead` component wraps the other, more functional component. It's purpo
 
 |Name|Required|Type|Default Value|Description|
 |----|--------|----|-----------|
-|onSelect|required|function|N/A|This function is called when a TypeaheadResult is selected. It has one argument, which is the `value` prop of the selected TypeaheadResult|
 |onDismiss|optional|function|No-op function|This function is called when the typeahead is dismissed when the user presses the escape key|
 |onBlur|optional|function|No-op function|This function is called when the entire typeahead component is blurred. If you want to listen to blurs on the input, this is the place to do it|
 
@@ -66,7 +65,7 @@ This component, which must be a direct child of the `TypeaheadResultsList` compo
 
 |Name|Required|Type|Default Value|Description|
 |----|--------|----|-----------|
-|value|required|any|N/A|The value of the result item. This value will be passed to the `Typeahead`'s `onSelect` prop|
+|onSelect|required|function|N/A|This function will be called when the typeahead is selected, whether by click or by keyboard interaction.|
 |onHighlight|optional|function|No-op function|This function will be called when the typeahead is highlighted through keyboard interaction|
 
 ## Examples
@@ -114,7 +113,7 @@ class Demo extends Component {
     const { selectedResult } = this.state;
 
     return [
-      <Typeahead onSelect={result => this.resultSelected(result)} key="typeahead">
+      <Typeahead key="typeahead">
         <TypeaheadInput
           value={this.state.taValue}
           onChange={(evt)=> this.typeaheadInputChange(evt)}
@@ -122,7 +121,7 @@ class Demo extends Component {
         <TypeaheadResultsList>
           {this.state.results.map(result => (
             <TypeaheadResult
-              value={result}
+              onSelect={() => this.resultSelected(result)}
             >
               {result.name}
             </TypeaheadResult>
@@ -194,10 +193,7 @@ class Demo extends Component {
     }, {});
 
     return [
-      <Typeahead
-        onSelect={result => this.resultSelected(result)}
-        key="typeahead"
-      >
+      <Typeahead key="typeahead">
         <TypeaheadInput
           value={this.state.taValue}
           onChange={(evt)=> this.typeaheadInputChange(evt)}
@@ -209,7 +205,7 @@ class Demo extends Component {
               // Display county name at the top of each county group
               (<h3 key={county}>{county}</h3>),
               ...(counties[county].map(city => (
-                <TypeaheadResult value={city}>{city.name}</TypeaheadResult>
+                <TypeaheadResult onSelect={() => this.resultSelected(city)}>{city.name}</TypeaheadResult>
               )))
             ]
           }, [])}

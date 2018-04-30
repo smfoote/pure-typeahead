@@ -7,13 +7,11 @@ import TypeaheadResult from '../src/TypeaheadResult';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const RESULT_VALUE = 'RESULT_VALUE';
 const shallowSetup = () => {
   const props = {
-    _onSelect: jest.fn(),
+    onSelect: jest.fn(),
     onHighlight: jest.fn(),
     isHighlighted: false,
-    value: RESULT_VALUE
   };
   return {
     wrapper: shallow(<TypeaheadResult {...props}>Las Vegas</TypeaheadResult>),
@@ -34,11 +32,10 @@ describe('TypeaheadResult', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('should call _onSelect when clicked', () => {
+  it('should call onSelect when clicked', () => {
     const { props, wrapper } = shallowSetup();
     wrapper.find('typeahead-result').simulate('click');
-    expect(props._onSelect).toHaveBeenCalled();
-    expect(props._onSelect).toHaveBeenCalledWith(props.value);
+    expect(props.onSelect).toHaveBeenCalled();
   });
 
   it('should call onHighlight when result becomes highlighted', () => {

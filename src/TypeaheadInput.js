@@ -45,6 +45,7 @@ export default class TypeaheadInput extends Component {
         type={this.props.type || 'text'}
         placeholder={this.props.placeholder}
         value={this.props.value}
+        autoComplete="off"
         onChange={(evt) => this.onChange(evt)}
         onKeyDown={(evt) => this.onKeyDown(evt)}
         onKeyUp={this.props.onKeyUp}

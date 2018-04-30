@@ -55,7 +55,7 @@ class Demo extends Component {
         ...arr,
         (<h3 key={county}>{county}</h3>),
         ...(counties[county].map(city => (
-          <TypeaheadResult value={city}>{city.name}</TypeaheadResult>
+          <TypeaheadResult onSelect={() => this.resultSelected(city)}>{city.name}</TypeaheadResult>
         )))
       ]
     }, []);
@@ -74,9 +74,7 @@ class Demo extends Component {
     return <div>
       <h1>Cities of Utah</h1>
       <button>Focus</button>
-      <Typeahead
-        onSelect={(city) => this.resultSelected(city)}
-        onBlur={() => console.log('blurred')}>
+      <Typeahead onBlur={() => console.log('blurred')}>
         <label htmlFor="input"><p>Search Cities</p></label>
         <TypeaheadInput
           id="input"

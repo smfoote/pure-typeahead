@@ -11,7 +11,6 @@ Enzyme.configure({ adapter: new Adapter() });
 const setup = () => {
   const props = {
     updateHighlightedIndex: jest.fn(),
-    onResultsUpdate: jest.fn(),
     highlightedIndex: -1,
   };
   return {
@@ -29,5 +28,39 @@ describe('TypeaheadResultsList', () => {
   it('renders self and subcomponents', () => {
     const { wrapper } = setup();
     expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('should navigate the list, go around the horn', () => {
+    const { wrapper } = setup();
+    wrapper.setProps({
+      updateHighlightedIndex: jest.fn().mockImplementation(idx => {
+        wrapper.setProps({highlightedIndex: idx});
+      })
+    });
+    const updateHighlightedIndex = wrapper.props().updateHighlightedIndex;
+    wrapper.instance().navigateList('ArrowDown');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(0);
+    wrapper.instance().navigateList('ArrowDown');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(1);
+    wrapper.instance().navigateList('ArrowDown');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(2);
+    wrapper.instance().navigateList('ArrowDown');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(0);
+    wrapper.instance().navigateList('ArrowUp');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(2);
+    wrapper.instance().navigateList('ArrowUp');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(1);
+    wrapper.instance().navigateList('ArrowUp');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(0);
+    wrapper.instance().navigateList('ArrowUp');
+    expect(updateHighlightedIndex).toHaveBeenLastCalledWith(2);
+  });
+
+  it('should call select on the correct result', () => {
+    const { wrapper } = setup();
+
+    wrapper.instance().result1.select = jest.fn();
+    wrapper.instance().selectResult(1);
+    expect(wrapper.instance().result1.select).toHaveBeenCalled();
   });
 });
