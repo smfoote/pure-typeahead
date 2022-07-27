@@ -32,7 +32,7 @@ This component consists of four React components: `Typeahead`, `TypeaheadInput`,
 The `Typeahead` component wraps the other, more functional component. It's purpose is to orchestrate the interactions of its children components. The `Typeahead` component needs a `TypeaheadInput` component and a `TypeaheadResultsList` component as direct children. It can have other children as well. For CSS targeting purposes, the `Typeahead` component produces a custom element tag, `<pure-typeahead>`, in the rendered DOM.
 
 |Name|Required|Type|Default Value|Description|
-|----|--------|----|-----------|
+|----|--------|----|-----------|----------|
 |onDismiss|optional|function|No-op function|This function is called when the typeahead is dismissed when the user presses the escape key|
 |onBlur|optional|function|No-op function|This function is called when the entire typeahead component is blurred. If you want to listen to blurs on the input, this is the place to do it|
 
@@ -43,7 +43,7 @@ The `TypeaheadInput` component is the input where the user will type their typea
 #### Props
 
 |Name|Required|Type|Default Value|Description|
-|----|--------|----|-----------|
+|----|--------|----|-------------|-----------|
 |value|required|string|N/A|The value of the input. This input is a [controlled component](https://reactjs.org/docs/forms.html#controlled-components), so the value must be provided and updated through `onChange`.|
 |type|optional|string|'text'|The type of input to be used. Don't use `'checkbox'` or `'radio'` and expect this thing to work.|
 |placeholder|optional|string|none|The placeholder text to be placed in the input.|
@@ -64,7 +64,7 @@ This component, which must be a direct child of the `TypeaheadResultsList` compo
 #### Props
 
 |Name|Required|Type|Default Value|Description|
-|----|--------|----|-----------|
+|----|--------|----|-------------|-----------|
 |onSelect|required|function|N/A|This function will be called when the typeahead is selected, whether by click or by keyboard interaction.|
 |onHighlight|optional|function|No-op function|This function will be called when the typeahead is highlighted through keyboard interaction|
 
